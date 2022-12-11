@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnycubicPCB.Utils;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -68,6 +69,10 @@ namespace AnycubicPCB
             FilePath = pPath;
 			FolderCache = pCacheFolder;
 			FileContent = File.ReadAllBytes(pPath);
+
+			if (!Directory.Exists(FolderCache))
+				Directory.CreateDirectory(FolderCache);
+
         }
 
         public int Decode()
@@ -86,23 +91,23 @@ namespace AnycubicPCB
 
 		private void DecodeHEADER()
         {
-			LayerThickness = Utils.ReadFloat(ref FileContent, OFFSET_HEADER + OFFSET_LayerThickness);
-			ExposureTime = Utils.ReadFloat(ref FileContent, OFFSET_HEADER + OFFSET_ExposureTime);
-			OffTime = Utils.ReadFloat(ref FileContent, OFFSET_HEADER + OFFSET_OffTime);
+			LayerThickness = DataUtils.ReadFloat(ref FileContent, OFFSET_HEADER + OFFSET_LayerThickness);
+			ExposureTime = DataUtils.ReadFloat(ref FileContent, OFFSET_HEADER + OFFSET_ExposureTime);
+			OffTime = DataUtils.ReadFloat(ref FileContent, OFFSET_HEADER + OFFSET_OffTime);
 
-			BottomExposureTime = Utils.ReadFloat(ref FileContent, OFFSET_HEADER + OFFSET_BottomExposureTime);
-			BottomLayers = Utils.ReadFloat(ref FileContent, OFFSET_HEADER + OFFSET_BottomLayers);
-			ZLift = Utils.ReadFloat(ref FileContent, OFFSET_HEADER + OFFSET_ZLift);
-			ZSpeed = Utils.ReadFloat(ref FileContent, OFFSET_HEADER + OFFSET_ZSpeed);
-			ZRetract = Utils.ReadFloat(ref FileContent, OFFSET_HEADER + OFFSET_ZRetract);
+			BottomExposureTime = DataUtils.ReadFloat(ref FileContent, OFFSET_HEADER + OFFSET_BottomExposureTime);
+			BottomLayers = DataUtils.ReadFloat(ref FileContent, OFFSET_HEADER + OFFSET_BottomLayers);
+			ZLift = DataUtils.ReadFloat(ref FileContent, OFFSET_HEADER + OFFSET_ZLift);
+			ZSpeed = DataUtils.ReadFloat(ref FileContent, OFFSET_HEADER + OFFSET_ZSpeed);
+			ZRetract = DataUtils.ReadFloat(ref FileContent, OFFSET_HEADER + OFFSET_ZRetract);
 
-			ScreenX = Utils.ReadInt(ref FileContent, OFFSET_HEADER + OFFSET_ScreenX);
-			ScreenY = Utils.ReadInt(ref FileContent, OFFSET_HEADER + OFFSET_ScreenY);
+			ScreenX = DataUtils.ReadInt(ref FileContent, OFFSET_HEADER + OFFSET_ScreenX);
+			ScreenY = DataUtils.ReadInt(ref FileContent, OFFSET_HEADER + OFFSET_ScreenY);
 		}
 
 		public void DecodeLAYERDEF()
 		{
-			LayerQty = Utils.ReadInt(ref FileContent, OFFSET_LAYERDEF + OFFSET_LayerQty);
+			LayerQty = DataUtils.ReadInt(ref FileContent, OFFSET_LAYERDEF + OFFSET_LayerQty);
 			Layers = new PwmoLayer[LayerQty];
 
 			int LayerOff = OFFSET_LAYERDEF + OFFSET_FirstLayer;
@@ -138,8 +143,7 @@ namespace AnycubicPCB
 			}
 		}
 
-
-		public void EncodeLAYERDEF()
+		public void EncodeLAYERDEF(string pOutputFilePath)
         {
 			int total_size = OFFSET_LAYERDEF_DATA;
 
@@ -181,7 +185,7 @@ namespace AnycubicPCB
 
 				progress += Layers[i].LayerData.Length;
 			}
-			File.WriteAllBytes(@"C:\\Users\\Giara\\Desktop\\OutputFile.pwmo", newContent);
+			File.WriteAllBytes(pOutputFilePath, newContent);
 		}
 	
 

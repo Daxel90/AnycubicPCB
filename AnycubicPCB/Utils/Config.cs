@@ -12,23 +12,32 @@ namespace AnycubicPCB
     {
         public static string Release = "1.00";
         public static string ConfigFilePath;
-        public static string CachePath;
+        public static string TmpPath;
         public static string DataPath;
+        public static string MachineName;
 
         public static void LoadConfig()
         {
             ConfigFilePath = Path.Combine(Application.StartupPath, "Config.ini");
 
-            CachePath = IniUtils.ReadString("Config", "CachePath", Path.Combine(Application.StartupPath, "Cache"), ConfigFilePath);
+            TmpPath = IniUtils.ReadString("Config", "TempPath", Path.Combine(Application.StartupPath, "Temp"), ConfigFilePath);
             DataPath = IniUtils.ReadString("Config", "DataPath", Path.Combine(Application.StartupPath, "Data"), ConfigFilePath);
+            MachineName = IniUtils.ReadString("Config", "MachineName", "Photon Mono", ConfigFilePath);
+
+            if (!Directory.Exists(TmpPath))
+                Directory.CreateDirectory(TmpPath);
+
+            if (!Directory.Exists(DataPath))
+                Directory.CreateDirectory(DataPath);
 
             SaveConfig();
         }
 
         public static void SaveConfig()
         {
-            IniUtils.WriteString("Config", "CachePath", CachePath, ConfigFilePath);
+            IniUtils.WriteString("Config", "TmpPath", TmpPath, ConfigFilePath);
             IniUtils.WriteString("Config", "DataPath", DataPath, ConfigFilePath);
+            IniUtils.WriteString("Config", "MachineName", MachineName, ConfigFilePath);
         }
     }
 }

@@ -5,20 +5,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace AnycubicPCB
+namespace AnycubicPCB.Utils
 {
-    class Utils
+    class DataUtils
     {
-		public static Image GetImageFromPDF(string pPdfPath, int pDPI)
-        {
-			FileStream streamPDf = File.OpenRead(pPdfPath);
-			byte[] png = Freeware.Pdf2Png.Convert(streamPDf, 1, pDPI);
-			Stream streamPNG = new MemoryStream(png);
-			return new Bitmap(streamPNG);
-
-		}
-
-
 		public static float ReadFloat(ref byte[] pData, int pOffset)
 		{
 			return BitConverter.ToSingle(pData, pOffset);

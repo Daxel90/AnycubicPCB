@@ -20,11 +20,10 @@ namespace AnycubicPCB.CustomComponents
         InterpolationMode ImgInterpolation = InterpolationMode.HighQualityBicubic;
 
         //Layers
-        Image[] LayerImages;
-        float[] LayerAlpha;
-        int[] LayerXOffset;
-        int[] LayerYOffset;
-        float[] LayerRotation;
+        public Image[] LayerImages;
+        public float[] LayerAlpha;
+        public int[] LayerXOffset;
+        public int[] LayerYOffset;
 
         //Stats
         bool Panning = false;
@@ -66,39 +65,34 @@ namespace AnycubicPCB.CustomComponents
             LayerAlpha = new float[pLayers];
             LayerXOffset = new int[pLayers];
             LayerYOffset = new int[pLayers];
-            LayerRotation = new float[pLayers];
 
             for (int i = 0; i < pLayers; i++)
             {
                 LayerAlpha[i] = 1;
                 LayerXOffset[i] = 0;
                 LayerYOffset[i] = 0;
-                LayerRotation[i] = 0;
             }
-
+            Invalidate();
         }
 
         public void SetImageLayer(int pLayer, Image pImage)
         {
             LayerImages[pLayer] = pImage;
+            Invalidate();
         }
 
         public void SetLayerAlpha(int pLayer, float pAlpha)
         {
             LayerAlpha[pLayer] = pAlpha;
+            Invalidate();
         }
 
         public void SetLayerOffset(int pLayer, int pOffsetX, int pOffsetY)
         {
             LayerXOffset[pLayer] = pOffsetX;
             LayerYOffset[pLayer] = pOffsetY;
+            Invalidate();
         }
-
-        public void SetLayerRotation(int pLayer, float pRotation)
-        {
-            LayerRotation[pLayer] = pRotation;
-        }
-
 
         #endregion
 
@@ -175,16 +169,6 @@ namespace AnycubicPCB.CustomComponents
 
                         //Calculate Offset + Scaling
                         RectangleF ImgPiece = new RectangleF((ImgOffset.X / ImgScale), (ImgOffset.Y / ImgScale), (Width / ImgScale), (Height / ImgScale));
-
-                        //Apply Layer Rotation
-                        //g.ResetTransform();
-                        //if (LayerRotation[i] != 0)
-                        //{
-                        //    g.TranslateTransform((ImgOffset.X / ImgScale) + (Width / ImgScale) / 2, (ImgOffset.Y / ImgScale) + (Height / ImgScale) / 2);
-                        //    g.RotateTransform(LayerRotation[i]);
-                        //    g.TranslateTransform(-((ImgOffset.X / ImgScale) + (Width / ImgScale) / 2), -((ImgOffset.Y / ImgScale) + (Height / ImgScale) / 2));
-                        //}
-
 
                         g.DrawImage(LayerImages[i], Screen, ImgPiece.X, ImgPiece.Y, ImgPiece.Width, ImgPiece.Height, GraphicsUnit.Pixel, imageAtt);
                     }   

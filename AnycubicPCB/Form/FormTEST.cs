@@ -24,7 +24,6 @@ namespace AnycubicPCB
 
             giaraPictureBox1.SetLayerAlpha(0, 1f);
             giaraPictureBox1.SetLayerAlpha(1, 0.5f);
-            giaraPictureBox1.SetLayerRotation(1,45);
         }
 
         private void button1_Click(object sender, EventArgs e)

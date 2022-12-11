@@ -31,26 +31,27 @@ namespace AnycubicPCB
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openPDFPCBLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configurationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.machineConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calibrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openPDFPCBLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLoadPcb = new System.Windows.Forms.Button();
             this.lblMachine = new System.Windows.Forms.Label();
             this.lblDPI = new System.Windows.Forms.Label();
             this.lblImgSize = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbCalibration = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbxExposure = new System.Windows.Forms.TextBox();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.cbxCalibLayer = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbxCalibrationTime = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.cbMachines = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.giaraPictureBox1 = new AnycubicPCB.CustomComponents.GiaraPictureBox();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -72,6 +73,12 @@ namespace AnycubicPCB
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // openPDFPCBLayerToolStripMenuItem
+            // 
+            this.openPDFPCBLayerToolStripMenuItem.Name = "openPDFPCBLayerToolStripMenuItem";
+            this.openPDFPCBLayerToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.openPDFPCBLayerToolStripMenuItem.Text = "Open PCB";
+            // 
             // configurationsToolStripMenuItem
             // 
             this.configurationsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -84,32 +91,14 @@ namespace AnycubicPCB
             // machineConfigToolStripMenuItem
             // 
             this.machineConfigToolStripMenuItem.Name = "machineConfigToolStripMenuItem";
-            this.machineConfigToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.machineConfigToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.machineConfigToolStripMenuItem.Text = "Machine Config";
             // 
             // calibrationToolStripMenuItem
             // 
             this.calibrationToolStripMenuItem.Name = "calibrationToolStripMenuItem";
-            this.calibrationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.calibrationToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.calibrationToolStripMenuItem.Text = "Calibration";
-            // 
-            // openPDFPCBLayerToolStripMenuItem
-            // 
-            this.openPDFPCBLayerToolStripMenuItem.Name = "openPDFPCBLayerToolStripMenuItem";
-            this.openPDFPCBLayerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.openPDFPCBLayerToolStripMenuItem.Text = "Open PCB";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(168, 73);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(604, 447);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
             // 
             // progressBar1
             // 
@@ -120,14 +109,15 @@ namespace AnycubicPCB
             this.progressBar1.Size = new System.Drawing.Size(760, 23);
             this.progressBar1.TabIndex = 4;
             // 
-            // button1
+            // btnLoadPcb
             // 
-            this.button1.Location = new System.Drawing.Point(12, 27);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 50);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Load PCB";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnLoadPcb.Location = new System.Drawing.Point(12, 27);
+            this.btnLoadPcb.Name = "btnLoadPcb";
+            this.btnLoadPcb.Size = new System.Drawing.Size(150, 50);
+            this.btnLoadPcb.TabIndex = 5;
+            this.btnLoadPcb.Text = "Load PCB";
+            this.btnLoadPcb.UseVisualStyleBackColor = true;
+            this.btnLoadPcb.Click += new System.EventHandler(this.btnLoadPcb_Click);
             // 
             // lblMachine
             // 
@@ -142,7 +132,7 @@ namespace AnycubicPCB
             // 
             this.lblDPI.Location = new System.Drawing.Point(480, 27);
             this.lblDPI.Name = "lblDPI";
-            this.lblDPI.Size = new System.Drawing.Size(150, 43);
+            this.lblDPI.Size = new System.Drawing.Size(250, 43);
             this.lblDPI.TabIndex = 8;
             this.lblDPI.Text = "lblDPI";
             this.lblDPI.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -158,24 +148,25 @@ namespace AnycubicPCB
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(12, 80);
+            this.label2.Location = new System.Drawing.Point(9, 130);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(150, 23);
             this.label2.TabIndex = 11;
             this.label2.Text = "Calibration";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // comboBox1
+            // cbCalibration
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 106);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(150, 21);
-            this.comboBox1.TabIndex = 12;
+            this.cbCalibration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCalibration.FormattingEnabled = true;
+            this.cbCalibration.Location = new System.Drawing.Point(12, 156);
+            this.cbCalibration.Name = "cbCalibration";
+            this.cbCalibration.Size = new System.Drawing.Size(150, 21);
+            this.cbCalibration.TabIndex = 12;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 130);
+            this.label1.Location = new System.Drawing.Point(9, 180);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(150, 23);
             this.label1.TabIndex = 13;
@@ -184,10 +175,11 @@ namespace AnycubicPCB
             // 
             // tbxExposure
             // 
-            this.tbxExposure.Location = new System.Drawing.Point(12, 156);
+            this.tbxExposure.Location = new System.Drawing.Point(12, 206);
             this.tbxExposure.Name = "tbxExposure";
             this.tbxExposure.Size = new System.Drawing.Size(150, 20);
             this.tbxExposure.TabIndex = 14;
+            this.tbxExposure.Text = "180000";
             // 
             // btnGenerate
             // 
@@ -198,6 +190,7 @@ namespace AnycubicPCB
             this.btnGenerate.TabIndex = 15;
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // cbxCalibLayer
             // 
@@ -209,14 +202,15 @@ namespace AnycubicPCB
             this.cbxCalibLayer.Text = "Show Calibration Layer";
             this.cbxCalibLayer.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // tbxCalibrationTime
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(12, 444);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(150, 20);
-            this.textBox1.TabIndex = 19;
+            this.tbxCalibrationTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tbxCalibrationTime.Enabled = false;
+            this.tbxCalibrationTime.Location = new System.Drawing.Point(12, 444);
+            this.tbxCalibrationTime.Name = "tbxCalibrationTime";
+            this.tbxCalibrationTime.Size = new System.Drawing.Size(150, 20);
+            this.tbxCalibrationTime.TabIndex = 19;
+            this.tbxCalibrationTime.Text = "1000";
             // 
             // label3
             // 
@@ -225,35 +219,66 @@ namespace AnycubicPCB
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(150, 23);
             this.label3.TabIndex = 18;
-            this.label3.Text = "Calibration Time [ms]";
+            this.label3.Text = "Time [ms]";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cbMachines
+            // 
+            this.cbMachines.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMachines.FormattingEnabled = true;
+            this.cbMachines.Location = new System.Drawing.Point(12, 106);
+            this.cbMachines.Name = "cbMachines";
+            this.cbMachines.Size = new System.Drawing.Size(150, 21);
+            this.cbMachines.TabIndex = 22;
+            this.cbMachines.SelectedIndexChanged += new System.EventHandler(this.cbMachines_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(12, 80);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(150, 23);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "Printer";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // giaraPictureBox1
+            // 
+            this.giaraPictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.giaraPictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.giaraPictureBox1.Location = new System.Drawing.Point(171, 80);
+            this.giaraPictureBox1.Name = "giaraPictureBox1";
+            this.giaraPictureBox1.Size = new System.Drawing.Size(601, 440);
+            this.giaraPictureBox1.TabIndex = 20;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cbMachines);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.giaraPictureBox1);
+            this.Controls.Add(this.tbxCalibrationTime);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cbxCalibLayer);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.tbxExposure);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbCalibration);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblImgSize);
             this.Controls.Add(this.lblDPI);
             this.Controls.Add(this.lblMachine);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLoadPcb);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,20 +291,22 @@ namespace AnycubicPCB
         private System.Windows.Forms.ToolStripMenuItem configurationsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem machineConfigToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem calibrationToolStripMenuItem;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLoadPcb;
         private System.Windows.Forms.Label lblMachine;
         private System.Windows.Forms.Label lblDPI;
         private System.Windows.Forms.Label lblImgSize;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbCalibration;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbxExposure;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.CheckBox cbxCalibLayer;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbxCalibrationTime;
         private System.Windows.Forms.Label label3;
+        private CustomComponents.GiaraPictureBox giaraPictureBox1;
+        private System.Windows.Forms.ComboBox cbMachines;
+        private System.Windows.Forms.Label label4;
     }
 }
 

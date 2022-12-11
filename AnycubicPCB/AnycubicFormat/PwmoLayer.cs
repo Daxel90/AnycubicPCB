@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
+using AnycubicPCB.Utils;
 
 namespace AnycubicPCB
 {
@@ -57,13 +57,13 @@ namespace AnycubicPCB
 
         public void DecodeHEADER()
         {
-            StartOffset = Utils.ReadInt(ref LayerHeaderData, OFFSET_StartOffset);
-            DataSize = Utils.ReadInt(ref LayerHeaderData, OFFSET_DataSize);
+            StartOffset = DataUtils.ReadInt(ref LayerHeaderData, OFFSET_StartOffset);
+            DataSize = DataUtils.ReadInt(ref LayerHeaderData, OFFSET_DataSize);
 
-            ZLiftDist = Utils.ReadFloat(ref LayerHeaderData, OFFSET_ZLiftDist);
-            ZLiftSpeed = Utils.ReadFloat(ref LayerHeaderData, OFFSET_ZLiftSpeed);
-            ExposureTime = Utils.ReadFloat(ref LayerHeaderData, OFFSET_ExposureTime);
-            Height = Utils.ReadFloat(ref LayerHeaderData, OFFSET_LayerHeight);
+            ZLiftDist = DataUtils.ReadFloat(ref LayerHeaderData, OFFSET_ZLiftDist);
+            ZLiftSpeed = DataUtils.ReadFloat(ref LayerHeaderData, OFFSET_ZLiftSpeed);
+            ExposureTime = DataUtils.ReadFloat(ref LayerHeaderData, OFFSET_ExposureTime);
+            Height = DataUtils.ReadFloat(ref LayerHeaderData, OFFSET_LayerHeight);
         }
 
         public void DecodeLAYER()
@@ -113,7 +113,7 @@ namespace AnycubicPCB
 				{
 					if (imgX < SizeX)
 					{
-						Utils.SetPixelColor(ref PixelsData, ImgStrade, imgX, imgY, RGBColor);
+						DataUtils.SetPixelColor(ref PixelsData, ImgStrade, imgX, imgY, RGBColor);
 
 						imgX++;
 
@@ -127,7 +127,7 @@ namespace AnycubicPCB
 					{
 						imgX = 0;
 						imgY++;
-						Utils.SetPixelColor(ref PixelsData, ImgStrade, imgX, imgY, RGBColor);
+						DataUtils.SetPixelColor(ref PixelsData, ImgStrade, imgX, imgY, RGBColor);
 						imgX++;
 					}
 
@@ -146,13 +146,13 @@ namespace AnycubicPCB
 
 		public void EncodeHEADER()
 		{
-			Utils.WriteInt(ref LayerHeaderData, OFFSET_StartOffset, StartOffset);
-			Utils.WriteInt(ref LayerHeaderData, OFFSET_DataSize, DataSize);
+			DataUtils.WriteInt(ref LayerHeaderData, OFFSET_StartOffset, StartOffset);
+			DataUtils.WriteInt(ref LayerHeaderData, OFFSET_DataSize, DataSize);
 
-			Utils.WriteFloat(ref LayerHeaderData, OFFSET_ZLiftDist, ZLiftDist);
-			Utils.WriteFloat(ref LayerHeaderData, OFFSET_ZLiftSpeed, ZLiftSpeed);
-			Utils.WriteFloat(ref LayerHeaderData, OFFSET_ExposureTime, ExposureTime);
-			Utils.WriteFloat(ref LayerHeaderData, OFFSET_LayerHeight, Height);
+			DataUtils.WriteFloat(ref LayerHeaderData, OFFSET_ZLiftDist, ZLiftDist);
+			DataUtils.WriteFloat(ref LayerHeaderData, OFFSET_ZLiftSpeed, ZLiftSpeed);
+			DataUtils.WriteFloat(ref LayerHeaderData, OFFSET_ExposureTime, ExposureTime);
+			DataUtils.WriteFloat(ref LayerHeaderData, OFFSET_LayerHeight, Height);
 		}
 
 		public void EncodeLAYER()
@@ -181,7 +181,7 @@ namespace AnycubicPCB
 			{
 				for (int x = 0; x < SizeX; x++)
 				{
-					int Color = (Utils.GetPixelColor(PixelsData, ImgStrade, x, y) & 0xFF) / 17;
+					int Color = (DataUtils.GetPixelColor(PixelsData, ImgStrade, x, y) & 0xFF) / 17;
 
 					if (lastColor == -1)
 						lastColor = Color;

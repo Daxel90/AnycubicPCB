@@ -16,13 +16,9 @@ namespace AnycubicPCB
         {
             Config.LoadConfig();
 
-            Image aa = Utils.GetImageFromPDF(@"H:\test\PWMO\Trace.pdf", 498);
-            aa.Save(@"H:\test\PWMO\aa.png");
-
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormTEST());
+            Application.Run(new MainForm());
         }
     }
 }
