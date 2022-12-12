@@ -49,12 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnycubicFormat\Calibration.cs" />
     <Compile Include="AnycubicFormat\Machine.cs" />
-    <Compile Include="Forms\NewCalibration.cs">
+    <Compile Include="Forms\NewCalibrationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\NewCalibration.Designer.cs">
-      <DependentUpon>NewCalibration.cs</DependentUpon>
+    <Compile Include="Forms\NewCalibrationForm.Designer.cs">
+      <DependentUpon>NewCalibrationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\Config.cs" />
     <Compile Include="CustomComponents\GiaraPictureBox.cs">
@@ -89,8 +90,8 @@
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\NewCalibration.resx">
-      <DependentUpon>NewCalibration.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\NewCalibrationForm.resx">
+      <DependentUpon>NewCalibrationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

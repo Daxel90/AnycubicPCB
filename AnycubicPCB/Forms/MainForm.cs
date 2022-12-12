@@ -1,4 +1,5 @@
 ﻿using AnycubicPCB.AnycubicFormat;
+using AnycubicPCB.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -79,7 +80,9 @@ namespace AnycubicPCB
 
         private void calibrationToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            NewCalibrationForm Form = new NewCalibrationForm();
 
+            Form.Show();
         }
     }
 }
