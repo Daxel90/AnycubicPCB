@@ -33,8 +33,8 @@ namespace AnycubicPCB
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openPDFPCBLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configurationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.machineConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calibrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeCalibrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnLoadPcb = new System.Windows.Forms.Button();
             this.lblMachine = new System.Windows.Forms.Label();
@@ -82,23 +82,24 @@ namespace AnycubicPCB
             // configurationsToolStripMenuItem
             // 
             this.configurationsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.machineConfigToolStripMenuItem,
-            this.calibrationToolStripMenuItem});
+            this.calibrationToolStripMenuItem,
+            this.removeCalibrationToolStripMenuItem});
             this.configurationsToolStripMenuItem.Name = "configurationsToolStripMenuItem";
-            this.configurationsToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
-            this.configurationsToolStripMenuItem.Text = "Configurations";
-            // 
-            // machineConfigToolStripMenuItem
-            // 
-            this.machineConfigToolStripMenuItem.Name = "machineConfigToolStripMenuItem";
-            this.machineConfigToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.machineConfigToolStripMenuItem.Text = "Machine Config";
+            this.configurationsToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
+            this.configurationsToolStripMenuItem.Text = "Calibrations";
             // 
             // calibrationToolStripMenuItem
             // 
             this.calibrationToolStripMenuItem.Name = "calibrationToolStripMenuItem";
-            this.calibrationToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.calibrationToolStripMenuItem.Text = "Calibration";
+            this.calibrationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.calibrationToolStripMenuItem.Text = "Add Calibration";
+            this.calibrationToolStripMenuItem.Click += new System.EventHandler(this.calibrationToolStripMenuItem_Click);
+            // 
+            // removeCalibrationToolStripMenuItem
+            // 
+            this.removeCalibrationToolStripMenuItem.Name = "removeCalibrationToolStripMenuItem";
+            this.removeCalibrationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removeCalibrationToolStripMenuItem.Text = "Remove Calibration";
             // 
             // progressBar1
             // 
@@ -238,7 +239,7 @@ namespace AnycubicPCB
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(150, 23);
             this.label4.TabIndex = 21;
-            this.label4.Text = "Printer";
+            this.label4.Text = "Printer Type";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // giaraPictureBox1
@@ -289,7 +290,6 @@ namespace AnycubicPCB
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openPDFPCBLayerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configurationsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem machineConfigToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem calibrationToolStripMenuItem;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button btnLoadPcb;
@@ -307,6 +307,7 @@ namespace AnycubicPCB
         private CustomComponents.GiaraPictureBox giaraPictureBox1;
         private System.Windows.Forms.ComboBox cbMachines;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolStripMenuItem removeCalibrationToolStripMenuItem;
     }
 }
 

@@ -20,19 +20,21 @@ namespace AnycubicPCB
         {
             InitializeComponent();
 
+            Text = "AnycubicPCB by Giara Rel. " + Config.Release;
+
             List<string> Machines = Machine.GetMachineList();
             cbMachines.Items.AddRange(Machines.ToArray());
 
             if(Machines.Contains(Config.MachineName))
                 cbMachines.SelectedItem = Config.MachineName;
 
-            UpdateMachineData();
+            UpdateMachineSelection();
 
             giaraPictureBox1.SetLayerQty(2);
             giaraPictureBox1.SetLayerAlpha(1, 0.5f);
         }
 
-        public void UpdateMachineData()
+        public void UpdateMachineSelection()
         {
             Machine m = Machine.GetMachineWithName((string)cbMachines.SelectedItem);
 
@@ -72,7 +74,12 @@ namespace AnycubicPCB
             Config.MachineName = (string)cbMachines.SelectedItem;
             Config.SaveConfig();
 
-            UpdateMachineData();
+            UpdateMachineSelection();
+        }
+
+        private void calibrationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

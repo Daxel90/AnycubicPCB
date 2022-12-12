@@ -14,6 +14,7 @@ namespace AnycubicPCB
         public static string ConfigFilePath;
         public static string TmpPath;
         public static string DataPath;
+        public static string CalibrationPath;
         public static string MachineName;
 
         public static void LoadConfig()
@@ -22,6 +23,7 @@ namespace AnycubicPCB
 
             TmpPath = IniUtils.ReadString("Config", "TempPath", Path.Combine(Application.StartupPath, "Temp"), ConfigFilePath);
             DataPath = IniUtils.ReadString("Config", "DataPath", Path.Combine(Application.StartupPath, "Data"), ConfigFilePath);
+            CalibrationPath = IniUtils.ReadString("Config", "CalibPath", Path.Combine(DataPath, "Calibrations"), ConfigFilePath);
             MachineName = IniUtils.ReadString("Config", "MachineName", "Photon Mono", ConfigFilePath);
 
             if (!Directory.Exists(TmpPath))
@@ -38,6 +40,7 @@ namespace AnycubicPCB
             IniUtils.WriteString("Config", "TmpPath", TmpPath, ConfigFilePath);
             IniUtils.WriteString("Config", "DataPath", DataPath, ConfigFilePath);
             IniUtils.WriteString("Config", "MachineName", MachineName, ConfigFilePath);
+            IniUtils.WriteString("Config", "CalibPath", CalibrationPath, ConfigFilePath);
         }
     }
 }

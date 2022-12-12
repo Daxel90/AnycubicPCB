@@ -50,6 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnycubicFormat\Machine.cs" />
+    <Compile Include="Forms\NewCalibration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewCalibration.Designer.cs">
+      <DependentUpon>NewCalibration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Config.cs" />
     <Compile Include="CustomComponents\GiaraPictureBox.cs">
       <SubType>UserControl</SubType>
@@ -57,18 +63,18 @@
     <Compile Include="CustomComponents\GiaraPictureBox.Designer.cs">
       <DependentUpon>GiaraPictureBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\FormTEST.cs">
+    <Compile Include="Forms\FormTEST.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FormTEST.Designer.cs">
+    <Compile Include="Forms\FormTEST.Designer.cs">
       <DependentUpon>FormTEST.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\ImgUtils.cs" />
     <Compile Include="Utils\IniUtils.cs" />
-    <Compile Include="Form\MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -77,11 +83,14 @@
     <Compile Include="AnycubicFormat\PwmoLayer.cs" />
     <Compile Include="Utils\DataUtils.cs" />
     <Compile Include="WorkSpace.cs" />
-    <EmbeddedResource Include="Form\FormTEST.resx">
+    <EmbeddedResource Include="Forms\FormTEST.resx">
       <DependentUpon>FormTEST.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewCalibration.resx">
+      <DependentUpon>NewCalibration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
